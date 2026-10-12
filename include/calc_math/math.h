@@ -12,7 +12,7 @@ const int NEGATIVE_ARGUMENT = 3;
 
 inline int add(int a, int b, int &result)
 {
-    if ((b > 0 && a + b > INT_MAX) || (b < 0 && a + b < INT_MIN))
+    if ((b > 0 && a > INT_MAX - b) || (b < 0 && a < INT_MIN - b))
     {
         return OVERFLOW;
     }
@@ -23,7 +23,7 @@ inline int add(int a, int b, int &result)
 
 inline int substract(int a, int b, int &result)
 {
-    if ((b > 0 && a - b < INT_MAX) || (b < 0 && a - b > INT_MAX))
+    if ((b > 0 && a < INT_MIN + b) || (b < 0 && a > INT_MAX + b))
     {
         return OVERFLOW;
     }
@@ -34,22 +34,22 @@ inline int substract(int a, int b, int &result)
 
 inline int multiply(int a, int b, int &result)
 {
-    if (a > 0 && b > 0 && a * b > INT_MAX)
+    if (a > 0 && b > 0 && a > INT_MAX / b)
     {
         return OVERFLOW;
     }
 
-    if (a < 0 && b < 0 && a * b > INT_MAX)
+    if (a < 0 && b < 0 && a < INT_MAX / b)
     {
         return OVERFLOW;
     }
 
-    if (a > 0 && b < 0 && a * b > INT_MIN)
+    if (a > 0 && b < 0 && a > INT_MAX / b)
     {
         return OVERFLOW;
     }
 
-    if (a < 0 && b > 0 && a * b > INT_MIN)
+    if (a < 0 && b > 0 && a < INT_MIN / b)
     {
         return OVERFLOW;
     }
@@ -63,6 +63,10 @@ inline int divide(int a, int b, int &result)
     if (b == 0)
     {
         return DIVISION_BY_ZERO;
+    }
+    if (a == INT_MIN && b == -1)
+    {
+        return OVERFLOW;
     }
 
     result = a / b;
@@ -91,7 +95,7 @@ inline int power(int number, int exponent, int &result)
 
     for (int i = 0; i < exponent; ++i)
     {
-        int status = multiply(number, number, value);
+        int status = multiply(value, number, value);
 
         if (status != SUCCESS)
         {
@@ -126,6 +130,7 @@ inline int factorial(int number, int &result)
 
     return multiply(number, previous, result);
 }
+
 } // namespace calc_math
 
 #endif
