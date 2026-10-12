@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.14)
-
 project(calc_math LANGUAGES CXX)
 
 add_library(calc_math INTERFACE)
