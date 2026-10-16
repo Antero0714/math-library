@@ -44,7 +44,7 @@ inline int multiply(int a, int b, int &result)
         return OVERFLOW;
     }
 
-    if (a > 0 && b < 0 && b < INT_MAX / a)
+    if (a > 0 && b < 0 && b < INT_MIN / a)
     {
         return OVERFLOW;
     }
