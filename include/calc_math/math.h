@@ -107,8 +107,9 @@ inline int power(int number, int exponent, int &result)
     return SUCCESS;
 }
 
-inline int factorial(int number, (void)number_2, int &result)
+inline int factorial(int number, int number_2, int &result)
 {
+    voi(number_2);
     if (number < 0)
     {
         return NEGATIVE_ARGUMENT;
