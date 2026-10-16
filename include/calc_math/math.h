@@ -107,7 +107,7 @@ inline int power(int number, int exponent, int &result)
     return SUCCESS;
 }
 
-inline int factorial(int number, int number_2 = 0, int &result)
+inline int factorial(int number, (void)number_2, int &result)
 {
     if (number < 0)
     {
