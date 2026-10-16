@@ -44,7 +44,7 @@ inline int multiply(int a, int b, int &result)
         return OVERFLOW;
     }
 
-    if (a > 0 && b < 0 && a > INT_MAX / b)
+    if (a > 0 && b < 0 && b < INT_MAX / a)
     {
         return OVERFLOW;
     }
@@ -107,7 +107,7 @@ inline int power(int number, int exponent, int &result)
     return SUCCESS;
 }
 
-inline int factorial(int number, int &result)
+inline int factorial(int number, int number_2, int &result)
 {
     if (number < 0)
     {
@@ -121,7 +121,7 @@ inline int factorial(int number, int &result)
     }
 
     int previous = 0;
-    int status = factorial(number - 1, previous);
+    int status = factorial(number - 1, 0, previous);
 
     if (status != SUCCESS)
     {
